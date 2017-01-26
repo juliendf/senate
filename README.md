@@ -46,7 +46,7 @@ Average NetworkIn per hour for the period : 705 Bytes
 #### Cloudwatch metric : Network Out ####
 Average NetworkOut for the period : 1085 Bytes
 Total Traffic : 41 MB per day
-
+```
 
 ## Docker usage
 
