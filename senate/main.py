@@ -22,7 +22,7 @@ if __name__ == "__main__":
 		list_unused_ebs_vol(client_ec2)
 		instance_list = list_ec2_instances(client_ec2)
 		for instanceID in instance_list:
-			print "\nData for : " + str(instanceID)
+			print ("\nData for : " + str(instanceID))
 			instance_cpu_usage(clientCloudwatch,instanceID)
 			instance_network_traffic(clientCloudwatch,instanceID)
 

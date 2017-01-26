@@ -57,7 +57,7 @@ def instance_cpu_usage(clientCloudwatch, instance_id):
 		Unit='Percent'
 	)
 
-	print "\n#### Cloudwatch metric : CPU Utilisation ####"
+	print ("\n#### Cloudwatch metric : CPU Utilisation ####")
 	result = 0
 	datapointLessThan10 = 0
 	#Calculate the number of time, the CPU utilisation chart is under 10%. Analyse each datapoint, if <= 10% increase datapointLessThan10
@@ -68,8 +68,8 @@ def instance_cpu_usage(clientCloudwatch, instance_id):
 		if int(data["Average"]) <= 10:
 			datapointLessThan10 += 1
 
-	print "Unuseddays : " + str(int(datapointLessThan10/24))
+	print ("Unuseddays : " + str(int(datapointLessThan10/24)))
 	if int(datapointLessThan10/24) > 4:
-		print "warning"
+		print ("warning")
 
-	print "Average CPU Utilisation for the period : " + str(result / idx) + " Pourcent"
+	print ("Average CPU Utilisation for the period : " + str(result / idx) + " Pourcent")

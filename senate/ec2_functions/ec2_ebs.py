@@ -3,7 +3,7 @@
 import boto3
 
 def list_unused_ebs_vol(client):
-	print "\n#### Unused EBS ####"
+	print ("\n#### Unused EBS ####")
 	notAttachedVolume = 0
 	ebs_list = []
 
@@ -17,7 +17,7 @@ def list_unused_ebs_vol(client):
 
 		#else:
 			#print ("Attached to : " + str(x["Attachments"][0]["InstanceId"]))
-	print "Total number of volumes : " + str(len(client.describe_volumes()["Volumes"]))
-	print "Total number of not attached volumes : " + str(notAttachedVolume)
+	print ("Total number of volumes : " + str(len(client.describe_volumes()["Volumes"])))
+	print ("Total number of not attached volumes : " + str(notAttachedVolume))
 
 	return ebs_list

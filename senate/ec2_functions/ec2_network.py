@@ -46,20 +46,20 @@ def instance_network_traffic(clientCloudwatch, instance_id):
 	)
 
 ### Calculate total network traffic	
-	print "\n#### Cloudwatch metric : Network In ####"
+	print ("\n#### Cloudwatch metric : Network In ####")
 	resultNetworkTrafficIn = 0
 	for idx, data in enumerate(NetworkTrafficIn["Datapoints"]):
 		resultNetworkTrafficIn = resultNetworkTrafficIn + int(data["Average"])
 		
-	print "Average NetworkIn per hour for the period : " + str(resultNetworkTrafficIn / idx) + " Bytes"
+	print ("Average NetworkIn per hour for the period : " + str(resultNetworkTrafficIn / idx) + " Bytes")
 
 
-	print "\n#### Cloudwatch metric : Network Out ####"
+	print ("\n#### Cloudwatch metric : Network Out ####")
 	resultNetworkTrafficOut = 0
 	for idx, data in enumerate(NetworkTrafficOut["Datapoints"]):
 		resultNetworkTrafficOut = resultNetworkTrafficOut + int(data["Average"])
 		
-	print "Average NetworkOut for the period : " + str(resultNetworkTrafficOut / idx) + " Bytes"
+	print ("Average NetworkOut for the period : " + str(resultNetworkTrafficOut / idx) + " Bytes")
 
 	# Should it be 5MB /day or 5MB /hour ?
-	print "Total Traffic : " + str(int((resultNetworkTrafficIn + resultNetworkTrafficOut)/1024)/dayPeriod) + " MB per day"
+	print ("Total Traffic : " + str(int((resultNetworkTrafficIn + resultNetworkTrafficOut)/1024)/dayPeriod) + " MB per day")

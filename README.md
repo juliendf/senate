@@ -46,3 +46,23 @@ Average NetworkIn per hour for the period : 705 Bytes
 #### Cloudwatch metric : Network Out ####
 Average NetworkOut for the period : 1085 Bytes
 Total Traffic : 41 MB per day
+
+
+## Docker usage
+
+**create env/env.list** : <br>
+```
+AWS_DEFAULT_REGION=REGION
+AWS_ACCESS_KEY_ID=xxx
+AWS_SECRET_ACCESS_KEY=xxx
+```
+
+**Build** : <br>
+```
+docker build -t senatev01 .
+```
+
+**run** : <br>
+```
+docker run --env-file ./env/env.list senatev01
+```
