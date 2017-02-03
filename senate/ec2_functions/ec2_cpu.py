@@ -2,6 +2,7 @@
 
 import boto3
 from datetime import datetime, timedelta
+from yaml import load, dump
 
 # doc http://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html?highlight=cloudwatch#CloudWatch.Client.get_metric_statistics
 
@@ -33,9 +34,18 @@ def instance_cpu_usage(clientCloudwatch, instance_id):
 	u'MetricName': 'CPUUtilization'}, {u'Namespace': 'AWS/EC2', u'Dimensions': [{u'Name': 'InstanceId', u'Value': 'i-86c22a10'}], u'MetricName': 'CPUUtilization'}], 
 	"""
 
+	#Read config file /Users/julien.defreitas/Documents/dev-perso/senate/senate/
+	with open('/usr/src/app/senate/config.yaml', 'r') as f:
+		configFile = load(f)
+
+	dayPeriod = configFile["CPU_check"]["dayPeriod"] # Period for calcul in days
+	cpuUsageHoursThreshold = configFile["CPU_check"]["cpuUsageHoursThreshold"]
+	cpuusageThresholdPourcentage = configFile["CPU_check"]["cpuusageThresholdPourcentage"]
+
+
+
 
 	#from datetime import datetime, timedelta
-	dayPeriod = 14 # Period for calcul in days
 	endDate = datetime.today() - timedelta(days=dayPeriod)
 	#print endDate
 	#print datetime.now()
@@ -59,17 +69,20 @@ def instance_cpu_usage(clientCloudwatch, instance_id):
 
 	print ("\n#### Cloudwatch metric : CPU Utilisation ####")
 	result = 0
-	datapointLessThan10 = 0
-	#Calculate the number of time, the CPU utilisation chart is under 10%. Analyse each datapoint, if <= 10% increase datapointLessThan10
+	datapointLessThanThreshold = 0
+	#Calculate the number of time, the CPU utilisation chart is under 10%. Analyse each datapoint, if <= 10% increase datapointLessThanThreshold
 	for idx, data in enumerate(CPUusage["Datapoints"]):
 		result = result + float(data["Average"])
 		#print int(data["Average"])
 		# Check if CPU usage if under 10%
-		if int(data["Average"]) <= 10:
-			datapointLessThan10 += 1
+		if int(data["Average"]) <= cpuusageThresholdPourcentage:
+			datapointLessThanThreshold += 1
 
-	print ("Unuseddays : " + str(int(datapointLessThan10/24)))
-	if int(datapointLessThan10/24) > 4:
-		print ("warning")
-
-	print ("Average CPU Utilisation for the period : " + str(result / idx) + " Pourcent")
+	if idx < cpuUsageHoursThreshold:
+		print ("insufficient data points")
+	else:
+		print ("Unuseddays : " + str(int(datapointLessThanThreshold/24)))
+		if int(datapointLessThanThreshold/24) > cpuUsageHoursThreshold:
+			print ("warning")
+		else:
+			print ("Average CPU Utilisation for the period : " + str(result / idx) + " Pourcent")

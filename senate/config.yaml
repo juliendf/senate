@@ -1,0 +1,6 @@
+CPU_check : 
+  dayPeriod : 14
+  cpuUsageHoursThreshold : 1
+  cpuusageThresholdPourcentage : 10
+network_check :
+  dayPeriod : 14
