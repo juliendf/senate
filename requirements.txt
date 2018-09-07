@@ -1,2 +1,2 @@
-boto3==1.4.1
-PyYAML==3.12
+boto3>=1.4.1
+PyYAML>=3.12

@@ -10,7 +10,7 @@ from yaml import load, dump
 def instance_network_traffic(clientCloudwatch, instance_id):
 
 	#Read config file /Users/julien.defreitas/Documents/dev-perso/senate/senate/
-	with open('/usr/src/app/senate/config.yaml', 'r') as f:
+	with open('config.yaml', 'r') as f:
 		configFile = load(f)
 
 	dayPeriod = configFile["network_check"]["dayPeriod"] # Period for calcul in days

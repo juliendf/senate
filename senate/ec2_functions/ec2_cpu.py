@@ -35,7 +35,7 @@ def instance_cpu_usage(clientCloudwatch, instance_id):
 	"""
 
 	#Read config file /Users/julien.defreitas/Documents/dev-perso/senate/senate/
-	with open('/usr/src/app/senate/config.yaml', 'r') as f:
+	with open('config.yaml', 'r') as f:
 		configFile = load(f)
 
 	dayPeriod = configFile["CPU_check"]["dayPeriod"] # Period for calcul in days
