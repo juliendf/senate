@@ -24,22 +24,24 @@ pip3 install -r requirements.txt
 
 To run the program :<br>
 ```
-cd senate
-python main.py 
-```<br>
+    cd senate
+    python main.py 
+```
+
+<br>
 
 ## Output example
 ```
-❯ python main.py
- 
+⇒  python main.py
+
 ################################                                 
 Un-used EBS                          
 ################################
 Total number of volumes : 2
 Total number of not attached volumes : 0
- 
+
 ################################                                                 
-Data for : i-08d0bac4chdsfghds87a                                           
+Data for : i-08d012335xxxxca258a                                           
 ################################
 
 # Cloudwatch metric : CPU Utilisation #
