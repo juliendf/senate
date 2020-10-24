@@ -73,6 +73,7 @@ def instance_cpu_usage(clientCloudwatch, instance_id):
 	#Calculate the number of time, the CPU utilisation chart is under 10%. Analyse each datapoint, if <= 10% increase datapointLessThanThreshold
 	for idx, data in enumerate(CPUusage["Datapoints"]):
 		result = result + float(data["Average"])
+		#print (data)
 		#print int(data["Average"])
 		# Check if CPU usage if under 10%
 		if int(data["Average"]) <= cpuusageThresholdPourcentage:
@@ -81,7 +82,7 @@ def instance_cpu_usage(clientCloudwatch, instance_id):
 	if idx < cpuUsageHoursThreshold:
 		print ("insufficient data points")
 	else:
-		print ("Unuseddays : " + str(int(datapointLessThanThreshold/24)))
+		print ("Unuseddays : " + str(int(datapointLessThanThreshold)))
 		if int(datapointLessThanThreshold/24) > cpuUsageHoursThreshold:
 			print ("warning")
 		else:

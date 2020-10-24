@@ -30,25 +30,29 @@ python main.py
 
 ## Output example
 ```
-⇒  python main.py
-
-#### Unused EBS ####
+❯ python main.py
+ 
+################################                                 
+Un-used EBS                          
+################################
 Total number of volumes : 2
-Total number of not attached volumes : 1
+Total number of not attached volumes : 0
+ 
+################################                                                 
+Data for : i-08d0bac4chdsfghds87a                                           
+################################
 
-Data for : i-01245a878b3b143f5
+# Cloudwatch metric : CPU Utilisation #
+Unuseddays : 7
+Average CPU Utilisation for the period : 0.613432173778 Pourcent
 
-#### Cloudwatch metric : CPU Utilisation ####
-Unuseddays : 14
-warning
-Average CPU Utilisation for the period : 0.0307568159204 Pourcent
+# Cloudwatch metric : Network In #
+Average NetworkIn per hour for the period : 232790 Bytes
 
-#### Cloudwatch metric : Network In ####
-Average NetworkIn per hour for the period : 705 Bytes
+# Cloudwatch metric : Network Out #
+Average NetworkOut for the period : 49106 Bytes
 
-#### Cloudwatch metric : Network Out ####
-Average NetworkOut for the period : 1085 Bytes
-Total Traffic : 41 MB per day
+Total Traffic : 117 MB per day
 ```
 
 ## Docker usage
