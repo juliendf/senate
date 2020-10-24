@@ -3,7 +3,6 @@
 import boto3
 
 def list_unused_ebs_vol(client):
-	print ("\n#### Unused EBS ####")
 	notAttachedVolume = 0
 	ebs_list = []
 

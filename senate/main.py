@@ -18,14 +18,20 @@ if __name__ == "__main__":
 
 		client_ec2 = connect_ec2()
 		clientCloudwatch = connect_cloudwatch()
-
+		print (" \n################################ \
+				 \nUn-used EBS \
+			     \n################################"\
+		)
 		list_unused_ebs_vol(client_ec2)
 		instance_list = list_ec2_instances(client_ec2)
 		if instance_list == []:
 			print ("#### No running instances ####")
 		else:
 			for instanceID in instance_list:
-				print ("\nData for : " + str(instanceID))
+				print (" \n################################ \
+						 \nData for : " + str(instanceID)+" \
+				 		 \n################################"\
+					  )
 				instance_cpu_usage(clientCloudwatch,instanceID)
 				instance_network_traffic(clientCloudwatch,instanceID)
 		

@@ -2,7 +2,7 @@
 
 import boto3
 from datetime import datetime, timedelta
-from yaml import load, dump
+from yaml import load, dump, FullLoader
 
 # doc http://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html?highlight=cloudwatch#CloudWatch.Client.get_metric_statistics
 
@@ -36,7 +36,7 @@ def instance_cpu_usage(clientCloudwatch, instance_id):
 
 	#Read config file /Users/julien.defreitas/Documents/dev-perso/senate/senate/
 	with open('config.yaml', 'r') as f:
-		configFile = load(f)
+		configFile = load(f, Loader=FullLoader)
 
 	dayPeriod = configFile["CPU_check"]["dayPeriod"] # Period for calcul in days
 	cpuUsageHoursThreshold = configFile["CPU_check"]["cpuUsageHoursThreshold"]
@@ -67,7 +67,7 @@ def instance_cpu_usage(clientCloudwatch, instance_id):
 		Unit='Percent'
 	)
 
-	print ("\n#### Cloudwatch metric : CPU Utilisation ####")
+	print ("\n# Cloudwatch metric : CPU Utilisation #")
 	result = 0
 	datapointLessThanThreshold = 0
 	#Calculate the number of time, the CPU utilisation chart is under 10%. Analyse each datapoint, if <= 10% increase datapointLessThanThreshold

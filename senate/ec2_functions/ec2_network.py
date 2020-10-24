@@ -2,7 +2,7 @@
 
 import boto3
 from datetime import datetime, timedelta
-from yaml import load, dump
+from yaml import load, dump,FullLoader
 
 # doc http://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html?highlight=cloudwatch#CloudWatch.Client.get_metric_statistics
 
@@ -11,7 +11,7 @@ def instance_network_traffic(clientCloudwatch, instance_id):
 
 	#Read config file /Users/julien.defreitas/Documents/dev-perso/senate/senate/
 	with open('config.yaml', 'r') as f:
-		configFile = load(f)
+		configFile = load(f, Loader=FullLoader)
 
 	dayPeriod = configFile["network_check"]["dayPeriod"] # Period for calcul in days
 
@@ -53,7 +53,7 @@ def instance_network_traffic(clientCloudwatch, instance_id):
 	)
 
 ### Calculate total network traffic	
-	print ("\n#### Cloudwatch metric : Network In ####")
+	print ("\n# Cloudwatch metric : Network In #")
 	resultNetworkTrafficIn = 0
 	for idx, data in enumerate(NetworkTrafficIn["Datapoints"]):
 		resultNetworkTrafficIn = resultNetworkTrafficIn + int(data["Average"])
@@ -64,7 +64,7 @@ def instance_network_traffic(clientCloudwatch, instance_id):
 		print ("insufficient data points")
 
 
-	print ("\n#### Cloudwatch metric : Network Out ####")
+	print ("\n# Cloudwatch metric : Network Out #")
 	resultNetworkTrafficOut = 0
 	for idx, data in enumerate(NetworkTrafficOut["Datapoints"]):
 		resultNetworkTrafficOut = resultNetworkTrafficOut + int(data["Average"])

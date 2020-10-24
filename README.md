@@ -8,7 +8,7 @@ It is aim to provide cost, security and architecture advice.
 The program use environment variable to access AWS datas<br>
 
 
-**Create a .envrc file like** : <br>
+**Use local credentials, IAM role or create a .envrc file like** : <br>
 ```
 export AWS_DEFAULT_REGION=REGION
 export AWS_ACCESS_KEY_ID=xxx
@@ -23,7 +23,10 @@ pip3 install -r requirements.txt
 ## Command
 
 To run the program :<br>
-```python main.py ```<br>
+```
+cd senate
+python main.py 
+```<br>
 
 ## Output example
 ```
